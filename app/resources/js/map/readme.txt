@@ -1,0 +1,1 @@
+initialisiert kartenansicht: liest gpx daten aus datenbank aus und stellt diese dar
