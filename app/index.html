@@ -23,15 +23,16 @@
     <script src='fullcalendar/packages/list/main.js'></script>
     <script>
 
-          document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-              plugins: [ 'dayGrid', 'timeGrid', 'list' ]
-            });
-            calendar.setOption('height', 600, 'contentHeight',400);
-            calendar.render();
-          });
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          plugins: [ 'dayGrid', 'timeGrid', 'list' ]
+
+        });
+        calendar.setOption('height', 700, 'contentHeight', 650);
+        calendar.render();
+      });
 
     </script>
     </head>
@@ -47,10 +48,14 @@
 
 
 		<form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
-  </div>
+
     <div id="calendar"></div>
 		<script src="resources/js/datenverwaltung/dropzone.js"></script>
     <script type="module" src="resources/js/index.js"></script>
+    <script src="resources/js/calendar/calendar.js">
+
+    </script>
+    </div>
 </body>
 
 </html>
