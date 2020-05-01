@@ -29,7 +29,7 @@
             var calendar = new FullCalendar.Calendar(calendarEl, {
               plugins: [ 'dayGrid', 'timeGrid', 'list' ]
             });
-            calendar.setOption('height', 800, 'contentHeight',800);
+            calendar.setOption('height', 600, 'contentHeight',400);
             calendar.render();
           });
 
@@ -47,9 +47,8 @@
 
 
 		<form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
-    <div id="calendar">
-
-    </div>
+  </div>
+    <div id="calendar"></div>
 		<script src="resources/js/datenverwaltung/dropzone.js"></script>
     <script type="module" src="resources/js/index.js"></script>
 </body>
