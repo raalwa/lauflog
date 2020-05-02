@@ -251,7 +251,7 @@ function (_Emitter) {
          * **NOTE**: If you have the option  `uploadMultiple` set to `true`, then
          * Dropzone will append `[]` to the name.
          */
-        paramName: "file",
+        paramName: "filetoupload",
 
         /**
          * Whether thumbnails for images should be generated
@@ -2110,7 +2110,7 @@ function (_Emitter) {
 
       fileReader.readAsDataURL(file);
     } // `mockFile` needs to have these attributes:
-    // 
+    //
     //     { name: 'name', size: 12345, imageUrl: '' }
     //
     // `callback` will be invoked when the image has been downloaded and displayed.
