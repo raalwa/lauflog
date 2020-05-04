@@ -2,29 +2,31 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elektronische Lauflog</title>
-    <link rel="stylesheet" href="resources/css/style.css">
-    <link rel="stylesheet" href="/resources/css/leaflet.css" />
-    <script src="/resources/js/map/leaflet.js"></script>
-    </head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elektronische Lauflog</title>
+  <link rel="stylesheet" href="resources/css/style.css">
+  <link rel="stylesheet" href="/app/resources/css/leaflet.css" />
+  <script src="resources/js/map/leaflet.js"></script>
+</head>
 
 <body>
-	<div id="content">
+  <div id="content">
     <h1>Elektronische Lauflog</h1>
-		<div class = "topnav">
-			<a href="index.html">Home</a>
-			<a class = "active" href="#">Karte</a>
-			<a href="tracks.html">Tracks</a>
-		</div>
-        <div id="mapid">
-            
-        </div>
-        
-        <script>
-            var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-        </script>
+    <div class="topnav">
+      <a href="index.html">Home</a>
+      <a class="active" href="#">Karte</a>
+      <a href="tracks.html">Tracks</a>
+    </div>
+    <div id="mapid" style="width: 600px; height: 400px;"></div>
+
+    <script>
+      var mymap = L.map('mapid').setView([49.020464, 12.101619], 14);
+      L.tileLayer('https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png', {
+        maxZoom: 20,
+        attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+      }).addTo(mymap);
+    </script>
 
     <script type="module" src="resources/js/index.js"></script>
 </body>

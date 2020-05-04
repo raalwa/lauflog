@@ -2,60 +2,58 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elektronische Lauflog</title>
-	<link rel="stylesheet" href="resources/css/dropzone.css">
-    
-    <link rel="stylesheet" href="resources/css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elektronische Lauflog</title>
+  <link rel="stylesheet" href="resources/css/dropzone.css">
 
-    <link rel='stylesheet' href='fullcalendar/packages/core/main.css' />
-    <link rel='stylesheet' href='fullcalendar/packages/daygrid/main.css'  />
-    <link rel='stylesheet' href='fullcalendar/packages/timegrid/main.css'  />
-    <link rel='stylesheet' href='fullcalendar/packages/list/main.css'  />
-    <script src='fullcalendar/packages/core/main.js'></script>
-    <script src='fullcalendar/packages/daygrid/main.js'></script>
-    <script src='fullcalendar/packages/timegrid/main.js'></script>
-    <script src='fullcalendar/packages/list/main.js'></script>
+  <link rel="stylesheet" href="resources/css/style.css">
 
-    <link rel="stylesheet" href="/resources/css/leaflet.css" />
-    <script src="/resources/js/map/leaflet.js"></script>
+  <link rel='stylesheet' href='fullcalendar/packages/core/main.css' />
+  <link rel='stylesheet' href='fullcalendar/packages/daygrid/main.css' />
+  <link rel='stylesheet' href='fullcalendar/packages/timegrid/main.css' />
+  <link rel='stylesheet' href='fullcalendar/packages/list/main.css' />
+  <script src='fullcalendar/packages/core/main.js'></script>
+  <script src='fullcalendar/packages/daygrid/main.js'></script>
+  <script src='fullcalendar/packages/timegrid/main.js'></script>
+  <script src='fullcalendar/packages/list/main.js'></script>
 
-    <script>
+  <!-- <link rel="stylesheet" href="/resources/css/leaflet.css" />
+  <script src="resources/js/map/leaflet.js"></script> -->
 
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          plugins: [ 'dayGrid', 'timeGrid', 'list' ]
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        plugins: ['dayGrid', 'timeGrid', 'list']
 
-        });
-        calendar.setOption('height', 700, 'contentHeight', 650);
-        calendar.render();
       });
-
-    </script>
-    </head>
+      calendar.setOption('height', 700, 'contentHeight', 650);
+      calendar.render();
+    });
+  </script>
+</head>
 
 <body>
-	<div id="content">
+  <div id="content">
     <h1>Elektronische Lauflog</h1>
-		<div class = "topnav">
-			<a class = "active" href="#">Home</a>
-			<a href="map.html">Karte</a>
-			<a href="tracks.html">Tracks</a>
-		</div>
+    <div class="topnav">
+      <a class="active" href="#">Home</a>
+      <a href="map.html">Karte</a>
+      <a href="tracks.html">Tracks</a>
+    </div>
 
 
-		<form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+    <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
 
     <div id="calendar"></div>
-		<script src="resources/js/datenverwaltung/dropzone.js"></script>
+    <script src="resources/js/datenverwaltung/dropzone.js"></script>
     <script type="module" src="resources/js/index.js"></script>
     <script src="resources/js/calendar/calendar.js">
 
     </script>
-    </div>
+  </div>
 </body>
 
 </html>
