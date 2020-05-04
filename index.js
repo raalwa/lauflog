@@ -20,7 +20,7 @@ function init() {
     var form = new formidable.IncomingForm();
     form.parse(req, function(err, fields, files) {
       var oldpath = files.filetoupload.path;
-      var newpath = __dirname + '/uploads/' + files.filetoupload.name;
+      var newpath = __dirname + '/app/uploads/' + files.filetoupload.name;
       mv(oldpath, newpath, function(err) {
         if (err) {
           console.log(err);

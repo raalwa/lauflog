@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="resources/css/style.css">
   <link rel="stylesheet" href="/app/resources/css/leaflet.css" />
   <script src="resources/js/map/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.4.0/gpx.min.js"></script>
 </head>
 
 <body>
@@ -18,13 +19,26 @@
       <a class="active" href="#">Karte</a>
       <a href="tracks.html">Tracks</a>
     </div>
-    <div id="mapid" style="width: 600px; height: 400px;"></div>
+
+    <div id = container>
+      <div id="mapid" style="width: 600px; height: 400px;"></div>
+
+      <div id = "gpx-selector">
+          <h2>Tracks</h2>
+      </div>
+    </div>
 
     <script>
       var mymap = L.map('mapid').setView([49.020464, 12.101619], 14);
       L.tileLayer('https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png', {
         maxZoom: 20,
         attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+      }).addTo(mymap);
+      var gpx = 'uploads/2020-05-04_179610056_GPX Download_ Kelheim – Altmühltor Runde von Regensburg-Prüfening.gpx'; // URL to your GPX file or the GPX itself
+      new L.GPX(gpx, {
+        async: true
+      }).on('loaded', function(e) {
+        mymap.fitBounds(e.target.getBounds());
       }).addTo(mymap);
     </script>
 
