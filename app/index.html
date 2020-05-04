@@ -18,10 +18,20 @@
   <script src='fullcalendar/packages/timegrid/main.js'></script>
   <script src='fullcalendar/packages/list/main.js'></script>
 
+  <script src="resources/js/map/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.4.0/gpx.min.js"></script>
+
   <!-- <link rel="stylesheet" href="/resources/css/leaflet.css" />
   <script src="resources/js/map/leaflet.js"></script> -->
 
   <script>
+    new L.GPX('uploads/2020-05-04_179610056_GPX Download_ Kelheim – Altmühltor Runde von Regensburg-Prüfening.gpx', {
+      async: true,
+    }).on('loaded', function(e) {
+      var gpx = e.target;
+      console.log(gpx.get_name());
+    });
+
     document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
 
@@ -50,9 +60,7 @@
     <div id="calendar"></div>
     <script src="resources/js/datenverwaltung/dropzone.js"></script>
     <script type="module" src="resources/js/index.js"></script>
-    <script src="resources/js/calendar/calendar.js">
-
-    </script>
+    <!-- <script src="resources/js/calendar/calendar.js"></script> -->
   </div>
 </body>
 
