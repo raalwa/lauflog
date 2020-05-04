@@ -25,6 +25,10 @@
 
       <div id = "gpx-selector">
           <h2>Tracks</h2>
+          <div id="Liste">
+
+          </div>
+
       </div>
     </div>
 
@@ -39,7 +43,14 @@
         async: true
       }).on('loaded', function(e) {
         mymap.fitBounds(e.target.getBounds());
+        var name = e.target.get_name();
+        var dist = e.target.get_distance();
+        var startime = e.target.get_start_time();
+        var endtime = e.target.get_end_time();
       }).addTo(mymap);
+
+    //var liste = document.getElementById("Liste");
+
     </script>
 
     <script type="module" src="resources/js/index.js"></script>
