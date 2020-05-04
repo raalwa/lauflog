@@ -25,21 +25,31 @@
   <script src="resources/js/map/leaflet.js"></script> -->
 
   <script>
+  var name;
+  var start_time;
     new L.GPX('uploads/2020-05-04_179610056_GPX Download_ Kelheim – Altmühltor Runde von Regensburg-Prüfening.gpx', {
       async: true,
     }).on('loaded', function(e) {
       var gpx = e.target;
-      console.log(gpx.get_name());
+      name = gpx.get_name();
+      start_time = '2020-04-26T11:04:10Z';
     });
 
     document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
 
       var calendar = new FullCalendar.Calendar(calendarEl, {
-        plugins: ['dayGrid', 'timeGrid', 'list']
+        plugins: ['dayGrid', 'timeGrid', 'list'],
+        events: [
+          {
+            title: name,
+            start: '2020-04-26T10:04:10Z',
+            //end: '2020-04-26T12:04:10Z',
+          }
+        ]
 
       });
-      calendar.setOption('height', 700, 'contentHeight', 650);
+      calendar.setOption('height', 700, 'contentHeight', 700);
       calendar.render();
     });
   </script>
