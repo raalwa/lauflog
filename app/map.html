@@ -52,27 +52,30 @@
         maxZoom: 20,
         attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
       }).addTo(mymap);
-      var gpx = localStorage.getItem("requestedGPX"); // URL to your GPX file or the GPX itself
+      var gpx = 'uploads/2020-05-04_179610056_GPX Download_ Kelheim – Altmühltor Runde von Regensburg-Prüfening.gpx'; // URL to your GPX file or the GPX itself
       new L.GPX(gpx, {
         async: true,
-          marker_options: {
-            startIconUrl: 'images/pin-icon-start.png',
-            endIconUrl: 'images/pin-icon-end.png',
-            shadowUrl: 'images/pin-shadow.png'
+        marker_options: {
+            startIconUrl: 'resources/css/images/pin-icon-start.png',
+            endIconUrl: 'resources/css/images/pin-icon-end.png',
+            shadowUrl: 'resources/css/images/pin-shadow.png',
+            conntent: name
         }
       }).on('loaded', function(e) {
         gpx = e.target;
         var startTime = gpx.get_start_time();
         var endTime = gpx.get_end_time();
-        var name = gpx.get_name();
-        var distance = gpx.get_distance();
+        name = gpx.get_name();
+        distance = gpx.get_distance();
         var totalTime = gpx.get_total_time();
 
 
         mymap.fitBounds(e.target.getBounds());
         document.getElementById('Name').innerHTML = name;
-        
+
       }).addTo(mymap);
+
+      L.marker([49.013432,12.101624]).addTo(mymap).bindPopup(name).openPopup();
 
 
     </script>
