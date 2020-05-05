@@ -73,7 +73,6 @@ h2 {
   margin: auto;
 }
 .block {
-  align-content: center;
   width: calc(100%  /7);
   height: 20em;
   display: inline-block;
