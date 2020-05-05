@@ -73,11 +73,15 @@ h2 {
   margin: auto;
 }
 .block {
+<<<<<<< HEAD
   width: calc(100%  /6.2);
+=======
+  min-width: 20em;
+  width: calc(100%  /7);
+>>>>>>> 7162b2ae7dc8295204cf2955232b7502b26e90c0
   height: 20em;
   display: inline-block;
   border-style: solid;
   text-align: center;
   white-space: pre-line;
 }
-

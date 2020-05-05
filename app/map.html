@@ -55,7 +55,7 @@
         maxZoom: 20,
         attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
       }).addTo(mymap);
-      var gpx = localStorage.getItem("requestedGPX"); // URL to your GPX file or the GPX itself
+      var gpx = localStorage.getItem("requestedGPX");
       new L.GPX(gpx, {
         async: true,
         marker_options: {
@@ -74,13 +74,12 @@
         var totalTime = gpx.get_duration_string(duration);
 
         mymap.fitBounds(e.target.getBounds());
+        document.getElementById('Time').innerHTML = name;
         document.getElementById('Name').innerHTML = "Name of the Track: " + name;
-
         document.getElementById('Distance').innerHTML = "Distance: " + distance.toFixed(2) + " Meter";
         document.getElementById('TotalTime').innerHTML = "Total Time: " + totalTime;
         document.getElementById('StartTime').innerHTML = "Start Time: " + startTime;
         document.getElementById('EndTime').innerHTML = "End Time: " + endTime;
->>>>>>> aefe731d1fd918e43a0d6546d6887a263e953eb3
 
       }).addTo(mymap);
 
