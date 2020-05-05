@@ -52,7 +52,7 @@
         maxZoom: 20,
         attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
       }).addTo(mymap);
-      var gpx = 'uploads/2020-05-04_179610056_GPX Download_ Kelheim – Altmühltor Runde von Regensburg-Prüfening.gpx'; // URL to your GPX file or the GPX itself
+      var gpx = localStorage.getItem("requestedGPX"); // URL to your GPX file or the GPX itself
       new L.GPX(gpx, {
         async: true,
           marker_options: {
