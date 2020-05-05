@@ -2,26 +2,99 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elektronische Lauflog</title>
-    <link rel="stylesheet" href="resources/css/style.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-        crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-        crossorigin=""></script>
-    </head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elektronische Lauflog</title>
+  <link rel="stylesheet" href="resources/css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+  <script src="resources/js/map/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.4.0/gpx.min.js"></script>
+</head>
 
 <body>
-	<div id="content">
+  <div id="content">
     <h1>Elektronische Lauflog</h1>
-		<div class = "topnav">
-			<a href="index.html">Home</a>
-			<a href="map.html">Karte</a>
-			<a class = "active" href="#">Tracks</a>
-		</div>
+    <div class="topnav">
+      <a href="index.html">Home</a>
+      <a class="active" href="#">Tracks</a>
+    </div>
+
+    <div id="container">
+      <div class="block" id="totalDistance">
+        <h3>Gesamtstrecke</h3>
+      </div>
+      <div class="block" id="timeMoving">
+        <h3>Zeit in Bewegung</h3>
+      </div>
+      <div class="block" id="totalTime">
+        <h3>Gesamtzeit</h3>
+      </div>
+      <div class="block" id="averageSpeed">
+        <h3>Durchschnittsgeschwindigkeit</h3>
+      </div>
+      <div class="block" id="averageTemp">
+        <h3>Durchschnittliche Temperatur</h3>
+      </div>
+      <div class="block" id="averageHeart">
+        <h3>Durchschnittliche Herzfrequenz</h3>
+      </div>
+
+    </div>
+
+    <script>
+      var totalDistance = 0,
+        timeMoving = 0,
+        totalTime = 0,
+        averageSpeed = 0,
+        averageTemp = 0,
+        averageHeart = 0,
+        gpxFiles;
+
+      function serverRequest(callback) {
+        let xhttp = new XMLHttpRequest();
+        xhttp.open('GET', "/gpx", true);
+        xhttp.responseType = "json";
+        xhttp.onload = function() {
+          if (xhttp.readyState === xhttp.DONE) {
+            if (xhttp.status === 200) {
+              gpxFiles = xhttp.response;
+              console.log("Client: " + xhttp.response);
+              callback();
+            }
+          }
+        };
+        xhttp.send();
+      }
+
+
+      function getData() {
+        gpxFiles.forEach((gpx, i) => {
+
+          function setGPXData(callback) {
+            new L.GPX(gpx, {
+              async: true,
+            }).on('loaded', function(e) {
+              var gpx = e.target;
+              totalDistance += gpx.get_distance();
+              timeMoving += gpx.get_moving_time() / 60000;
+              totalTime += gpx.get_total_time() / 60000;
+              averageSpeed += gpx.get_moving_speed();
+              averageHeart += gpx.get_average_hr();
+              averageTemp += gpx.get_average_temp();
+              callback();
+            })
+          }
+
+          function renderData() {
+            console.log("Test: " + totalDistance);
+          }
+          setGPXData(renderData);
+        })
+      }
+
+      serverRequest(getData);
+    </script>
 
     <script type="module" src="resources/js/index.js"></script>
 </body>

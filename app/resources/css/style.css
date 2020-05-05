@@ -60,3 +60,10 @@ h1 {
 #mapid {
   height: 180px;
 }
+
+.block {
+  width: 20em;
+  height: 20em;
+  display: inline-block;
+  border-style: solid;
+}

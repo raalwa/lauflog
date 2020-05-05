@@ -88,16 +88,7 @@
         },
         eventClick: function(info) {
           var eventObj = info.event;
-
-          if (calendar.getEventById('1')) {
-            alert(
-              'Clicked ' + eventObj.title + '.\n' +
-              'Will show ' + eventObj.url
-            );
-          } else {
-            localStorage.setItem('requestedGPX', eventObj.id);
-            alert('Clicked ' + eventObj.title);
-          }
+          localStorage.setItem('requestedGPX', eventObj.id);
         },
       });
       serverRequest(renderCalender);
@@ -110,7 +101,6 @@
     <h1>Elektronische Lauflog</h1>
     <div class="topnav">
       <a class="active" href="#">Home</a>
-      <a href="map.html">Karte</a>
       <a href="tracks.html">Tracks</a>
     </div>
 
