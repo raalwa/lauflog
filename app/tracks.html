@@ -101,17 +101,24 @@
               averageTempEL= document.getElementById("averageTemp"),
               averageHeartEL= document.getElementById("averageHeart");
 
-              totalDistanceEL.childNodes[3].innerHTML=Math.round(totalDistance/1000)+" km";
-              timeMovingEL.childNodes[3].innerHTML=Math.round(timeMoving)+" min";
-              totalTimeEL.childNodes[3].innerHTML=Math.round(totalTime)+" min";
-              averageSpeedEL.childNodes[3].innerHTML=Math.round(averageSpeed/gpxFiles.length)+" km/h";
-              averageHeartEL.childNodes[3].innerHTML=Math.round(Math.round(averageHeart)/gpxFiles.length)+" hz";
-              if(averageTemp>0){
-                averageTempEL.childNodes[3].innerHTML=Math.round(averageTemp/gpxFiles.length)+" °C";
+              totalDistanceEL.childNodes[3].innerHTML=Math.round(totalDistance/1000)+"\nkm";
+              timeMovingEL.childNodes[3].innerHTML=Math.round(timeMoving)+"\nmin";
+              totalTimeEL.childNodes[3].innerHTML=Math.round(totalTime)+"\nmin";
+              averageSpeedEL.childNodes[3].innerHTML=Math.round(averageSpeed/gpxFiles.length)+"\nkm/h";
+              averageHeartEL.childNodes[3].innerHTML=Math.round(Math.round(averageHeart)/gpxFiles.length)+"\nhz";
+              averageTempEL.childNodes[3].innerHTML=Math.round(averageTemp/gpxFiles.length)+"\n°C";
+
+              if(!averageTemp){
+                averageTempEL.style.visibility ="hidden";
               }
-              else{
-                averageTempEl.style.visibility ="hidden";
+              if(!averageHeart){
+                averageHeartEL.style.visibility ="hidden";
               }
+              //   averageTempEL.childNodes[3].innerHTML=Math.round(averageTemp/gpxFiles.length)+" °C";
+              // }
+              // else{
+              //   averageTempEl.style.visibility ="hidden";
+              // }
             console.log("Test: " + averageSpeed);
           }
           setGPXData(renderData);
