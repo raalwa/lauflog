@@ -95,6 +95,7 @@
               'Will show ' + eventObj.url
             );
           } else {
+            localStorage.setItem('requestedGPX', eventObj.id);
             alert('Clicked ' + eventObj.title);
           }
         },
