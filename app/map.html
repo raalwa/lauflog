@@ -28,6 +28,7 @@
 
         <div id="tracks">
           <ul class="track-list">
+            <p id="Time"></p>
           </ul>
         </div>
 
@@ -55,10 +56,19 @@
         async: true
       }).on('loaded', function(e) {
         gpx = e.target;
+        var startTime = gpx.get_start_time();
+        var endTime = gpx.get_end_time();
+        var name = gpx.get_name();
+        var distance = gpx.get_distance();
+        var totalTime = gpx.get_total_time();
 
-        console.log()
+
         mymap.fitBounds(e.target.getBounds());
+        document.getElementById('Time').innerHTML = name;
+        
       }).addTo(mymap);
+
+
     </script>
 
     <script type="module" src="resources/js/map/map.js"></script>
