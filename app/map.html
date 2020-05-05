@@ -51,7 +51,7 @@
         maxZoom: 20,
         attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
       }).addTo(mymap);
-      var gpx = localStorage.getItem("requestedGPX"); // URL to your GPX file or the GPX itself
+      var gpx = localStorage.getItem("requestedGPX");
       new L.GPX(gpx, {
         async: true,
         marker_options: {
@@ -70,11 +70,8 @@
 
 
         mymap.fitBounds(e.target.getBounds());
-<<<<<<< HEAD
         document.getElementById('Time').innerHTML = name;
-=======
-        document.getElementById('Name').innerHTML = name;
->>>>>>> 6e707899e99d22d02e059d92a2c3a87d8751bfd6
+
 
       }).addTo(mymap);
 

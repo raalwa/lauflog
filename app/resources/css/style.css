@@ -74,11 +74,10 @@ h2 {
 }
 .block {
   width: calc(100%  /6);
-  /*width: 20em;*/
+  min-width: 20em;
   height: 20em;
   display: inline-block;
   border-style: solid;
   text-align: center;
   white-space: pre-line;
 }
-
