@@ -25,49 +25,63 @@
   <script src="resources/js/map/leaflet.js"></script> -->
 
   <script>
-    var gpxFiles;
-    var xhttp = new XMLHttpRequest();
-    xhttp.open('GET', "/gpx", true);
-    xhttp.responseType="json";
-    xhttp.onload = function() {
-      if (xhttp.readyState === xhttp.DONE) {
-        if (xhttp.status === 200) {
-          gpxFiles = xhttp.response;
-          //console.log("Client: " + xhttp.response);
-          // console.log("CLient: " + xhttp.responseText);
+    var gpxFiles,
+      calendar;
+
+    function serverRequest(callback) {
+      let xhttp = new XMLHttpRequest();
+      xhttp.open('GET', "/gpx", true);
+      xhttp.responseType = "json";
+      xhttp.onload = function() {
+        if (xhttp.readyState === xhttp.DONE) {
+          if (xhttp.status === 200) {
+            gpxFiles = xhttp.response;
+            console.log("Client: " + xhttp.response);
+            callback();
+          }
         }
-      }
-    };
-    xhttp.send();
-    // console.log("Client received: " + xhttp.response);
-    // function submit() {
-    //   var xhr = new XMLHttpRequest();
-    //   xhr.onreadystatechange = function() {
-    //     if (this.readyState == 4 && this.status == 200) {
-    //       console.log(xhr.responseText);
-    //       console.log("I'm here");
-    //     }
-    //   };
-    // xhr.open("GET", "/gpx", true);
-    // xhr.send();
-    //   console.log("XMLHttpRequest sent");
-    // }
-    // var name;
-    // var start_time;
-    // var end_time;
-    // new L.GPX('uploads/2020-05-04_179610056_GPX Download_ Kelheim – Altmühltor Runde von Regensburg-Prüfening.gpx', {
-    //   async: true,
-    // }).on('loaded', function(e) {
-    //   var gpx = e.target;
-    //   name = gpx.get_name();
-    //   start_time = gpx.get_start_time(); //'2020-05-26';
-    //   end_time = gpx.get_end_time();
-    // });
+      };
+      xhttp.send();
+    }
+
+    function renderCalender() {
+      gpxFiles.forEach((gpx, i) => {
+        let name;
+        let startTime;
+        let endTime;
+
+        function setGPXData(callback) {
+          new L.GPX(gpx, {
+            async: true,
+          }).on('loaded', function(e) {
+            var gpx = e.target;
+            name = gpx.get_name();
+            startTime = gpx.get_start_time(); //'2020-05-26';
+            endTime = gpx.get_end_time();
+            callback();
+          })
+        }
+
+        function eventToCalendar() {
+          calendar.addEvent({
+            id: gpx,
+            title: name,
+            start: startTime,
+            end: endTime,
+            url: 'map.html',
+            allDay: false
+          });
+        }
+        setGPXData(eventToCalendar);
+      })
+      calendar.setOption('height', 700, 'contentHeight', 700, 'aspectRatio', 1.5, );
+      calendar.render();
+    }
 
     document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
 
-      var calendar = new FullCalendar.Calendar(calendarEl, {
+      calendar = new FullCalendar.Calendar(calendarEl, {
         plugins: ['dayGrid', 'timeGrid', 'list'],
         header: {
           center: 'addEventButton'
@@ -80,74 +94,12 @@
               'Clicked ' + eventObj.title + '.\n' +
               'Will show ' + eventObj.url
             );
-
-            //window.open(eventObj.url);
-
-            //info.jsEvent.preventDefault(); // prevents browser from following link in current tab.
           } else {
             alert('Clicked ' + eventObj.title);
           }
         },
-        //   customButtons: {
-        //     addEventButton: {
-        //       text: 'add event...',
-        //       click: function() {
-        //         var dateStrStart = start_time;
-        //         var dateStrEnd = end_time;
-        //         var dateStart = new Date(dateStrStart); // will be in local time
-        //         var dateEnd = new Date(dateStrEnd);
-        //         if (!isNaN(dateStart.valueOf())) { // valid?
-        //           calendar.addEvent({
-        //             id: 1,
-        //             title: name,
-        //             start: dateStart,
-        //             end: dateEnd,
-        //             url: 'map.html',
-        //             allDay: false
-        //           });
-        //           alert('Great. Now, update your database...');
-        //         } else {
-        //           alert('Invalid date.');
-        //         }
-        //     }
-        //   }
-        // },
-        events: [{
-          title: name,
-          start: '2020-04-26T10:04:10Z',
-          //end: '2020-04-26T12:04:10Z',
-        }]
-
       });
-      console.log("Files: " + gpxFiles[0]);
-      // gpxFiles.forEach((gpx, i) => {
-      //   let name;
-      //   let startTime;
-      //   let endTime;
-      //
-      //   new L.GPX(gpx, {
-      //     async: true,
-      //   }).on('loaded', function(e) {
-      //     var gpx = e.target;
-      //     name = gpx.get_name();
-      //     startTime = gpx.get_start_time(); //'2020-05-26';
-      //     endTime = gpx.get_end_time();
-      //   });
-      //
-      //   calendar.addEvent({
-      //     id: gpx,
-      //     title: name,
-      //     start: startTime,
-      //     end: endTime,
-      //     url: 'map.html',
-      //     allDay: false
-      //   });
-      //
-      // })
-      calendar.setOption('height', 700, 'contentHeight', 700, 'aspectRatio', 1.5, );
-      // console.log(calendar.);
-      calendar.render();
-      console.log("All events: " + calendar.getEvents());
+      serverRequest(renderCalender);
     });
   </script>
 </head>
@@ -167,7 +119,6 @@
     <div id="calendar"></div>
     <script src="resources/js/datenverwaltung/dropzone.js"></script>
     <script type="module" src="resources/js/index.js"></script>
-    <!-- <script src="resources/js/calendar/calendar.js"></script> -->
   </div>
 </body>
 
