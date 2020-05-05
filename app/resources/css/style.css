@@ -16,6 +16,11 @@ body {
     margin: 2vw;
     height: 1vw;
 }
+#calendar {
+  width: 80vw;
+  text-align: left;
+  margin: 0 auto;
+}
 
 h1 {
     width: 100vw;
@@ -52,6 +57,6 @@ h1 {
   color: white;
 }
 
-#mapid { 
-  height: 180px; 
+#mapid {
+  height: 180px;
 }
