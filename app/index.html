@@ -119,31 +119,31 @@
         }]
 
       });
-      // console.log("Files: " + gpxFiles[0]);
-      gpxFiles.forEach((gpx, i) => {
-        let name;
-        let startTime;
-        let endTime;
-
-        new L.GPX(gpx, {
-          async: true,
-        }).on('loaded', function(e) {
-          var gpx = e.target;
-          name = gpx.get_name();
-          startTime = gpx.get_start_time(); //'2020-05-26';
-          endTime = gpx.get_end_time();
-        });
-
-        calendar.addEvent({
-          id: gpx,
-          title: name,
-          start: startTime,
-          end: endTime,
-          url: 'map.html',
-          allDay: false
-        });
-
-      })
+      console.log("Files: " + gpxFiles[0]);
+      // gpxFiles.forEach((gpx, i) => {
+      //   let name;
+      //   let startTime;
+      //   let endTime;
+      //
+      //   new L.GPX(gpx, {
+      //     async: true,
+      //   }).on('loaded', function(e) {
+      //     var gpx = e.target;
+      //     name = gpx.get_name();
+      //     startTime = gpx.get_start_time(); //'2020-05-26';
+      //     endTime = gpx.get_end_time();
+      //   });
+      //
+      //   calendar.addEvent({
+      //     id: gpx,
+      //     title: name,
+      //     start: startTime,
+      //     end: endTime,
+      //     url: 'map.html',
+      //     allDay: false
+      //   });
+      //
+      // })
       calendar.setOption('height', 700, 'contentHeight', 700, 'aspectRatio', 1.5, );
       // console.log(calendar.);
       calendar.render();
