@@ -74,13 +74,12 @@
         var totalTime = gpx.get_duration_string(duration);
 
         mymap.fitBounds(e.target.getBounds());
+        
         document.getElementById('Name').innerHTML = "Name of the Track: " + name;
-
-        document.getElementById('Distance').innerHTML = "Distance: " + distance.toFixed(2) + " Meter";
+        document.getElementById('Distance').innerHTML = "Distance: " + distance.toFixed(1)/1000 + " Kilometer";
         document.getElementById('TotalTime').innerHTML = "Total Time: " + totalTime;
         document.getElementById('StartTime').innerHTML = "Start Time: " + startTime;
         document.getElementById('EndTime').innerHTML = "End Time: " + endTime;
->>>>>>> aefe731d1fd918e43a0d6546d6887a263e953eb3
 
       }).addTo(mymap);
 
@@ -89,7 +88,6 @@
 
     </script>
 
-    <script type="module" src="resources/js/map/map.js"></script>
 </body>
 
 </html>
