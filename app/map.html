@@ -20,17 +20,29 @@
       <a href="tracks.html">Tracks</a>
     </div>
 
-    <div id = container>
+    <div id=container>
       <div id="mapid" style="width: 600px; height: 400px;"></div>
 
-      <div id = "gpx-selector">
-          <h2>Tracks</h2>
-          <div id="Liste">
+      <div id="gpx-selector">
+        <h2>Tracks</h2>
 
-          </div>
+        <div id="tracks">
+          <ul class="track-list">
+          </ul>
+        </div>
 
+        <div id="menu">
+          <div class="button-uncheck"></div>
+          <div class="button-delete"></div>
+        </div>
       </div>
     </div>
+
+    <template id="track-template">
+      <li class="track" data-id="">
+        <input type="checkbox" name="track-status" class="track-status-checkbox" />
+      </li>
+    </template>
 
     <script>
       var mymap = L.map('mapid').setView([49.020464, 12.101619], 14);
@@ -42,18 +54,14 @@
       new L.GPX(gpx, {
         async: true
       }).on('loaded', function(e) {
+        gpx = e.target;
+
+        console.log()
         mymap.fitBounds(e.target.getBounds());
-        var name = e.target.get_name();
-        var dist = e.target.get_distance();
-        var startime = e.target.get_start_time();
-        var endtime = e.target.get_end_time();
       }).addTo(mymap);
-
-    //var liste = document.getElementById("Liste");
-
     </script>
 
-    <script type="module" src="resources/js/index.js"></script>
+    <script type="module" src="resources/js/map/map.js"></script>
 </body>
 
 </html>
