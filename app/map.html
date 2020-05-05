@@ -29,6 +29,7 @@
         <div id="tracks">
           <ul class="track-list">
             <p id="Time"></p>
+            <p id="Name"></p>
           </ul>
         </div>
 
@@ -53,7 +54,12 @@
       }).addTo(mymap);
       var gpx = 'uploads/2020-05-04_179610056_GPX Download_ Kelheim – Altmühltor Runde von Regensburg-Prüfening.gpx'; // URL to your GPX file or the GPX itself
       new L.GPX(gpx, {
-        async: true
+        async: true,
+          marker_options: {
+            startIconUrl: 'images/pin-icon-start.png',
+            endIconUrl: 'images/pin-icon-end.png',
+            shadowUrl: 'images/pin-shadow.png'
+        }
       }).on('loaded', function(e) {
         gpx = e.target;
         var startTime = gpx.get_start_time();
@@ -64,7 +70,7 @@
 
 
         mymap.fitBounds(e.target.getBounds());
-        document.getElementById('Time').innerHTML = name;
+        document.getElementById('Name').innerHTML = name;
         
       }).addTo(mymap);
 
