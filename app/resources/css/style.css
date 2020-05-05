@@ -11,10 +11,12 @@ body {
 
  .topnav {
     padding: 1vw;
+    text-align: center;
 }
 .dropzone {
     margin: 2vw;
     height: 1vw;
+    text-align: center
 }
 #calendar {
   width: 80vw;
@@ -33,13 +35,20 @@ h1 {
     color: #FAFAFA;
 }
 
+h2 {
+  color: #000080;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 3em;
+}
+
 .topnav {
   overflow: hidden;
   background-color: #333;
 }
 
 .topnav a {
-  float: left;
+  float: center;
   color: #f2f2f2;
   text-align: center;
   padding: 14px 16px;
@@ -60,10 +69,16 @@ h1 {
 #mapid {
   height: 180px;
 }
-
+.container{
+  margin: auto;
+}
 .block {
-  width: 20em;
+  width: calc(100%  /6);
+  /*width: 20em;*/
   height: 20em;
   display: inline-block;
   border-style: solid;
+  text-align: center;
+  white-space: pre-line;
 }
+
