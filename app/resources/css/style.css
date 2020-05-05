@@ -11,10 +11,12 @@ body {
 
  .topnav {
     padding: 1vw;
+    text-align: center;
 }
 .dropzone {
     margin: 2vw;
     height: 1vw;
+    text-align: center
 }
 #calendar {
   width: 80vw;
@@ -39,7 +41,7 @@ h1 {
 }
 
 .topnav a {
-  float: left;
+  float: center;
   color: #f2f2f2;
   text-align: center;
   padding: 14px 16px;
