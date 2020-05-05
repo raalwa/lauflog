@@ -28,8 +28,12 @@
 
         <div id="tracks">
           <ul class="track-list">
-            <p id="Time"></p>
             <p id="Name"></p>
+
+            <p id="Distance"></p>
+            <p id="TotalTime"></p>
+            <p id="StartTime"></p>
+            <p id="EndTime"></p>
           </ul>
         </div>
 
@@ -67,15 +71,20 @@
         var endTime = gpx.get_end_time();
         name = gpx.get_name();
         distance = gpx.get_distance();
-        var totalTime = gpx.get_total_time();
-
+        var duration = gpx.get_total_time();
+        var totalTime = gpx.get_duration_string(duration);
 
         mymap.fitBounds(e.target.getBounds());
-        document.getElementById('Name').innerHTML = name;
+        document.getElementById('Name').innerHTML = "Name of the Track: " + name;
+
+        document.getElementById('Distance').innerHTML = "Distance: " + distance.toFixed(2) + " Meter";
+        document.getElementById('TotalTime').innerHTML = "Total Time: " + totalTime;
+        document.getElementById('StartTime').innerHTML = "Start Time: " + startTime;
+        document.getElementById('EndTime').innerHTML = "End Time: " + endTime;
 
       }).addTo(mymap);
 
-      L.marker([49.013432,12.101624]).addTo(mymap).bindPopup(name).openPopup();
+      L.marker([48.99,11.990]).addTo(mymap).bindPopup(name).openPopup();
 
 
     </script>
